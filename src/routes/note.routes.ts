@@ -1,6 +1,7 @@
 import express from "express";
 import {
   getNotes,
+  getNoteById,
   createNote,
   updateNote,
   deleteNote,
@@ -10,6 +11,10 @@ const router = express.Router();
 
 // Gunakan langsung untuk endpoint GET dan POST
 router.get("/", getNotes);
+router.get("/:id", function(req, res, next) {
+  getNoteById(req, res).catch(next);
+});
+
 router.post("/", createNote);
 
 // Gunakan middleware wrapper untuk PUT dan DELETE
